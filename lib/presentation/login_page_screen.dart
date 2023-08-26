@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_edspert_learning_course/presentation/home_page_screen.dart';
+import 'package:get/route_manager.dart';
+import 'package:project_edspert_learning_course/presentation/router/routers.dart';
+import 'package:project_edspert_learning_course/presentation/screen/home/home_page_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -81,12 +83,7 @@ class _HomepageState extends State<LoginPage> {
               ),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                  );
+                  Get.toNamed(Routes.HomePage);
                 },
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
