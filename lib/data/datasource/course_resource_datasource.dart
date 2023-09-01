@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:project_edspert_learning_course/data/model/course_response_model.dart';
+import 'package:project_edspert_learning_course/data/model/courseModel.dart';
 
 class CourseRemoteDatasource {
   final Dio client;

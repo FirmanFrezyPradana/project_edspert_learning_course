@@ -2,10 +2,13 @@
 
 import 'package:get/get.dart';
 import 'package:project_edspert_learning_course/domain/entity/banners_respon_entity.dart';
+import 'package:project_edspert_learning_course/domain/entity/course_response_entity.dart';
 import 'package:project_edspert_learning_course/domain/usecase/get_baner_usecase.dart';
+import 'package:project_edspert_learning_course/domain/usecase/get_course_usecase.dart';
 
 class HomeController extends GetxController {
   final GetBannerUsecase bannerUsecase;
+  final GetCourseUseCase courseUseCase;
 
   // List<BannerDataEntity> banner = [];
 //ketika didalam sstartefull terdapar set state untuk me listen  merebuild komponen
@@ -18,7 +21,12 @@ class HomeController extends GetxController {
   // nantinya get material app akan mekihat ke anak2 nya, oelh karena itu
   // list baner danlist banner 2 bisa di listen sehingga nantinya dapat dirender pada apliakasi
 
-  HomeController({required this.bannerUsecase});
+  RxList<CourseDataEntity> courseList = <CourseDataEntity>[].obs;
+
+  HomeController({
+    required this.bannerUsecase,
+    required this.courseUseCase,
+  });
 
   void getBanners() async {
     final result = await bannerUsecase.call();
@@ -26,5 +34,11 @@ class HomeController extends GetxController {
     banner2(result.data);
     update();
     // update sama seperti setstate dia akan mengupdate value dari variable rx
+  }
+
+  void getCourse(String majorName) async {
+    final result = await courseUseCase.call(majorName);
+    courseList(result.data); // Menggunakan .value untuk mengisi RxList
+    update();
   }
 }
